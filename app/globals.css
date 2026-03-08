@@ -44,32 +44,51 @@
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.bento-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
+.glossy-card {
+  background: white;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.03);
-  @apply rounded-4xl p-8 hover:border-ticlu-blue/30 transition-all duration-500 overflow-hidden relative;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.02),
+    0 10px 15px -3px rgba(0, 0, 0, 0.03),
+    inset 0 2px 4px 0 rgba(255, 255, 255, 1);
+  @apply rounded-3xl transition-all duration-500;
+}
+
+.text-highlight-box {
+  @apply relative inline-block px-4 py-1.5 mx-1 italic font-black;
+  &::before {
+    content: '';
+    @apply absolute inset-0 bg-blue-600 -rotate-2 rounded-lg -z-10;
+  }
+}
+
+.bento-card {
+  @apply bg-white rounded-4xl p-8 hover:border-ticlu-blue/30 transition-all duration-500 overflow-hidden relative border border-slate-100;
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.05);
+}
+
+.bento-card:hover {
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.1);
 }
 
 .grid-pattern {
-  background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.03) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0);
   background-size: 40px 40px;
 }
 
 .mesh-gradient {
   background-color: #ffffff;
   background-image: 
-    radial-gradient(at 0% 0%, hsla(210,100%,98%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(215,100%,97%,1) 0, transparent 50%), 
-    radial-gradient(at 100% 0%, hsla(220,100%,98%,1) 0, transparent 50%);
+    radial-gradient(at 0% 0%, hsla(210,100%,99%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(215,100%,98%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(220,100%,99%,1) 0, transparent 50%);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-open-sans), sans-serif;
-  @apply antialiased;
+  @apply antialiased tracking-tight;
 }
 
 body::selection {

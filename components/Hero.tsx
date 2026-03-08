@@ -69,24 +69,24 @@ export default function Hero() {
       />
 
       <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-14 max-w-3xl relative z-40">
+        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-14 max-w-4xl relative z-40">
           <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-slate-50 text-slate-500 text-[10px] font-black tracking-[0.4em] uppercase border border-slate-100 backdrop-blur-md">
+            <span className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-slate-50 text-slate-500 text-[10px] font-black tracking-[0.4em] uppercase border border-slate-100">
               <span className="w-1.5 h-1.5 rounded-full bg-ticlu-blue animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.5)]" />
               The Future of Short-Form
             </span>
           </motion.div>
           
-          <div className="flex flex-col gap-2">
-            <motion.h1 variants={item} className="text-8xl md:text-9xl font-black tracking-tighter text-slate-900 leading-[0.85] uppercase">
+          <div className="flex flex-col gap-6">
+            <motion.h1 variants={item} className="text-8xl md:text-9xl font-black tracking-tighter text-slate-900 leading-[0.8] uppercase">
               {BRAND.name}
             </motion.h1>
-            <motion.p variants={item} className="text-4xl md:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-linear-to-r from-ticlu-blue to-blue-600">
-              {BRAND.tagline}.
+            <motion.p variants={item} className="text-4xl md:text-7xl font-black tracking-tight text-slate-900 leading-tight">
+              Connecting <span className="text-highlight-box px-8 py-2 text-white not-italic inline-flex items-center justify-center transform -rotate-1">Creativity.</span>
             </motion.p>
           </div>
 
-          <motion.p variants={item} className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium max-w-xl">
+          <motion.p variants={item} className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium max-w-2xl">
             Join 10M+ creators in the fastest growing social ecosystem ever built. Experience passion-based feeds like never before.
           </motion.p>
 
