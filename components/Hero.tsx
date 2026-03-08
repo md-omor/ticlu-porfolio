@@ -39,12 +39,12 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-ticlu-dark grid-pattern">
+    <section className="relative min-h-screen flex items-center pt-40 pb-24 overflow-hidden bg-white grid-pattern">
       {/* Interactive Spotlight */}
       <motion.div
         className="pointer-events-none absolute -inset-px z-30 transition duration-300 opacity-0 lg:opacity-100"
         style={{
-          background: `radial-gradient(600px at ${spotlightX}px ${spotlightY}px, rgba(59, 130, 246, 0.15), transparent 80%)`,
+          background: `radial-gradient(600px at ${spotlightX}px ${spotlightY}px, rgba(96, 165, 250, 0.1), transparent 80%)`,
         }}
       />
 
@@ -69,38 +69,37 @@ export default function Hero() {
       />
 
       <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-12 max-w-3xl relative z-40">
+        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-14 max-w-3xl relative z-40">
           <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-white/5 text-slate-300 text-[10px] font-black tracking-[0.4em] uppercase border border-white/10 backdrop-blur-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-ticlu-blue animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
+            <span className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-slate-50 text-slate-500 text-[10px] font-black tracking-[0.4em] uppercase border border-slate-100 backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-ticlu-blue animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.5)]" />
               The Future of Short-Form
             </span>
           </motion.div>
           
           <div className="flex flex-col gap-2">
-            <motion.h1 variants={item} className="text-8xl md:text-9xl font-black tracking-tighter text-white leading-[0.85]">
+            <motion.h1 variants={item} className="text-8xl md:text-9xl font-black tracking-tighter text-slate-900 leading-[0.85] uppercase">
               {BRAND.name}
             </motion.h1>
-            <motion.p variants={item} className="text-4xl md:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-ticlu-blue via-ticlu-purple to-ticlu-indigo">
-              Unleash the Content.
+            <motion.p variants={item} className="text-4xl md:text-6xl font-black tracking-tight text-transparent bg-clip-text bg-linear-to-r from-ticlu-blue to-blue-600">
+              {BRAND.tagline}.
             </motion.p>
           </div>
 
-          <motion.p variants={item} className="text-xl md:text-2xl text-slate-400 leading-relaxed font-medium max-w-xl">
-            {BRAND.tagline} — Join 10M+ creators in the fastest growing social ecosystem ever built.
+          <motion.p variants={item} className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium max-w-xl">
+            Join 10M+ creators in the fastest growing social ecosystem ever built. Experience passion-based feeds like never before.
           </motion.p>
 
-          <motion.div variants={item} className="flex flex-wrap gap-6 mt-4">
+          <motion.div variants={item} className="flex flex-wrap gap-8 mt-4">
             <Link
               href="#download"
-              className="group relative bg-white text-ticlu-dark px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_-10px_rgba(255,255,255,0.2)]"
+              className="group relative bg-ticlu-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(96,165,250,0.4)]"
             >
-              <div className="absolute inset-0 bg-linear-to-r from-ticlu-blue to-ticlu-purple opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
               <span className="relative z-10">Download App</span>
             </Link>
             <Link
               href="#features"
-              className="glass-card px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm text-white hover:bg-white/10 transition-all hover:scale-105 active:scale-95 border-white/10"
+              className="glass-card px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm text-slate-600 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95 border-slate-200"
             >
               Explore Tech
             </Link>

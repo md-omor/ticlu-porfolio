@@ -21,8 +21,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-auto max-w-7xl z-50 transition-all duration-500 px-6 py-3 rounded-full border border-white/10 ${
-        scrolled ? "bg-ticlu-dark/60 backdrop-blur-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.5)]" : "bg-transparent"
+      className={`fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-auto max-w-7xl z-50 transition-all duration-500 px-6 py-3 rounded-full border border-black/5 ${
+        scrolled ? "bg-white/70 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.05)]" : "bg-transparent"
       }`}
     >
       <div className="flex justify-between items-center gap-12">
@@ -35,7 +35,7 @@ export default function Navbar() {
               className="object-contain"
             />
           </div>
-          <span className="text-xl font-black text-white tracking-tighter">{BRAND.name}</span>
+          <span className="text-xl font-black text-slate-800 tracking-tighter uppercase">{BRAND.name}</span>
         </Link>
 
         {/* Desktop Links */}
@@ -44,22 +44,22 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white px-5 py-2 rounded-full transition-all hover:bg-white/5 active:scale-95"
+              className="text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-ticlu-blue px-5 py-2 rounded-full transition-all hover:bg-black/5 active:scale-95"
             >
               {link.name}
             </Link>
           ))}
-          <div className="w-px h-4 bg-white/10 mx-2" />
+          <div className="w-px h-4 bg-slate-200 mx-2" />
           <Link
             href="#download"
-            className="bg-white text-ticlu-dark px-7 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:bg-ticlu-blue hover:text-white transition-all shadow-xl active:scale-95 ml-2"
+            className="bg-ticlu-blue text-white px-7 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-lg shadow-blue-200 active:scale-95 ml-2"
           >
             Get App
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white p-2" onClick={() => setIsOpen(!isOpen)}>
+        <button className="md:hidden text-slate-800 p-2" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
@@ -71,14 +71,14 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-20 left-0 right-0 md:hidden bg-ticlu-dark/95 backdrop-blur-2xl border border-white/10 rounded-4xl overflow-hidden shadow-2xl z-40"
+            className="absolute top-20 left-0 right-0 md:hidden bg-white/95 backdrop-blur-2xl border border-black/5 rounded-4xl overflow-hidden shadow-2xl z-40"
           >
             <div className="flex flex-col p-8 gap-6">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-lg font-bold text-slate-300 hover:text-ticlu-blue"
+                  className="text-lg font-black uppercase tracking-widest text-slate-600 hover:text-ticlu-blue"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
@@ -86,7 +86,7 @@ export default function Navbar() {
               ))}
               <Link
                 href="#download"
-                className="bg-white text-ticlu-dark px-6 py-4 rounded-2xl text-center font-black uppercase tracking-widest text-sm"
+                className="bg-ticlu-blue text-white px-6 py-4 rounded-2xl text-center font-black uppercase tracking-widest text-sm shadow-lg shadow-blue-100"
                 onClick={() => setIsOpen(false)}
               >
                 Get App

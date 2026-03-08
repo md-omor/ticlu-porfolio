@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Rubik } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 
-const rubik = Rubik({
-  variable: "--font-rubik",
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
   subsets: ["latin"],
 });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${rubik.variable} font-rubik antialiased bg-ticlu-dark text-slate-200 overflow-x-hidden`}
+        className={`${openSans.variable} font-sans antialiased bg-white text-slate-900 overflow-x-hidden`}
       >
         {children}
       </body>
