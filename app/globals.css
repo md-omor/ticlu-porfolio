@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-ticlu-blue: #3B82F6;
+  --color-ticlu-purple: #8B5CF6;
+  --color-ticlu-indigo: #6366F1;
+  --color-ticlu-slate: #F1F5F9;
+  --color-ticlu-dark: #020617; /* Deep Void Blue/Slate */
+  --color-ticlu-gray-900: #0F172A;
+  
+  --font-rubik: var(--font-rubik);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
+  --animate-spotlight: spotlight 2s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+}
+
+:root {
+  --background: #020617;
+  --foreground: #f8fafc;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bento-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  @apply rounded-4xl p-8 hover:border-ticlu-blue/30 transition-all duration-500 overflow-hidden relative;
+}
+
+.grid-pattern {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.mesh-gradient {
+  background-color: #020617;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(220,100%,10%,1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225,100%,15%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(260,100%,10%,1) 0, transparent 50%);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-rubik), sans-serif;
+  @apply antialiased;
+}
+
+body::selection {
+  background-color: rgba(59, 130, 246, 0.3);
+}
