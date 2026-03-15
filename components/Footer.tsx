@@ -7,81 +7,91 @@ import { Github, Twitter, Instagram, Youtube } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-50 text-slate-900 pt-32 pb-16 relative overflow-hidden">
-      {/* Decorative Glow */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-ticlu-blue/5 rounded-full blur-[120px] pointer-events-none" />
-      
+    <footer className="bg-ticlu-dark text-white pt-24 pb-12 relative overflow-hidden">
+      {/* Subtle glow */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-ticlu-blue/5 rounded-full blur-[120px] pointer-events-none" />
+
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
-          <div className="col-span-1 md:col-span-1 space-y-8">
-            <Link href="/" className="flex items-center gap-3 tracking-tighter group">
-              <div className="relative w-12 h-12">
-                <Image 
-                  src="/logo.png" 
-                  alt={BRAND.name} 
-                  fill
-                  className="object-contain"
-                />
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-14 mb-20">
+
+          {/* Brand col */}
+          <div className="col-span-1 md:col-span-1 space-y-7">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative w-10 h-10 group-hover:rotate-12 transition-transform duration-500">
+                <Image src="/logo.png" alt={BRAND.name} fill className="object-contain" />
               </div>
-              <span className="text-3xl font-black text-slate-900 uppercase">{BRAND.name}</span>
+              <span className="text-2xl font-black text-white uppercase tracking-tighter">{BRAND.name}</span>
             </Link>
-            <p className="text-slate-500 leading-relaxed text-lg font-medium">
-              Connecting Creativity. Leading the charge in the short-form video revolution. Built for creators, by creators.
+            <p className="text-white/50 leading-relaxed font-medium">
+              Interest-based video for creators who are tired of irrelevant feeds. Your passions, front and center.
             </p>
-            <div className="flex gap-6">
+            <div className="flex gap-3">
               {[Github, Twitter, Instagram, Youtube].map((Icon, i) => (
-                <Link key={i} href="#" className="w-12 h-12 rounded-2xl bg-white border border-slate-100 flex items-center justify-center text-slate-400 hover:text-ticlu-blue hover:border-ticlu-blue/20 hover:shadow-lg transition-all">
-                  <Icon size={20} />
+                <Link key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center text-white/40 hover:text-ticlu-blue hover:border-ticlu-blue/30 hover:bg-ticlu-blue/10 transition-all">
+                  <Icon size={16} />
                 </Link>
               ))}
             </div>
           </div>
 
-          <div className="col-span-1">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-900 mb-10">Platform</h4>
-            <ul className="space-y-5">
+          {/* Platform */}
+          <div>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-8">Platform</h4>
+            <ul className="space-y-4">
               {NAV_LINKS.map(link => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-slate-500 hover:text-ticlu-blue font-medium transition-colors">{link.name}</Link>
+                  <Link href={link.href} className="text-white/60 hover:text-white font-medium transition-colors">
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="col-span-1">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-900 mb-10">Legal</h4>
-            <ul className="space-y-5">
-              <li><Link href="#" className="text-slate-500 hover:text-ticlu-blue font-medium transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="text-slate-500 hover:text-ticlu-blue font-medium transition-colors">Terms of Service</Link></li>
-              <li><Link href="#" className="text-slate-500 hover:text-ticlu-blue font-medium transition-colors">Cookie Policy</Link></li>
+          {/* Legal */}
+          <div>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-8">Legal</h4>
+            <ul className="space-y-4">
+              {["Privacy Policy","Terms of Service","Cookie Policy","Community Guidelines"].map(l => (
+                <li key={l}>
+                  <Link href="#" className="text-white/60 hover:text-white font-medium transition-colors">{l}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="col-span-1">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-900 mb-10">Newsletter</h4>
-            <div className="glass-card p-8 rounded-3xl border-slate-100 bg-white">
-              <p className="text-sm text-slate-500 mb-6 font-medium">Get the latest updates from the creative front.</p>
-              <div className="flex flex-col gap-3">
-                <input 
-                  type="email" 
-                  placeholder="Email address" 
-                  className="bg-slate-50 border border-slate-100 rounded-xl px-5 py-4 text-sm text-slate-900 focus:outline-hidden focus:border-ticlu-blue/30 transition-all font-medium"
-                />
-                <button className="bg-ticlu-blue text-white py-4 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-lg shadow-blue-100">
-                  Subscribe
-                </button>
-              </div>
+          {/* Newsletter */}
+          <div>
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40 mb-8">Stay in the loop</h4>
+            <p className="text-sm text-white/50 mb-5 font-medium leading-relaxed">
+              New features, creator spotlights, and updates — straight to your inbox.
+            </p>
+            <div className="flex flex-col gap-3">
+              <input
+                type="email"
+                placeholder="Your email"
+                className="bg-white/6 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-ticlu-blue/50 transition-all"
+              />
+              <button className="bg-ticlu-blue text-white py-3 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-400 transition-all shadow-lg shadow-ticlu-blue/20">
+                Subscribe
+              </button>
             </div>
           </div>
         </div>
 
-        <div className="pt-12 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-400 text-sm font-medium">
+        {/* Bottom bar */}
+        <div className="pt-10 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-5">
+          <p className="text-white/35 text-sm font-medium">
             © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-8 text-sm text-slate-400 font-medium">
-            <Link href="#" className="hover:text-ticlu-blue transition-colors">Support</Link>
-            <Link href="#" className="hover:text-ticlu-blue transition-colors">Contact</Link>
+          <div className="flex items-center gap-3 flex-wrap justify-center">
+            {["React Native","GraphQL","Firebase"].map(t => (
+              <span key={t} className="text-[10px] text-white/25 bg-white/4 border border-white/6 rounded-md px-2.5 py-1 font-bold">{t}</span>
+            ))}
+          </div>
+          <div className="flex items-center gap-6 text-sm text-white/35 font-medium">
+            <Link href="#" className="hover:text-white transition-colors">Support</Link>
+            <Link href="#" className="hover:text-white transition-colors">Contact</Link>
           </div>
         </div>
       </div>

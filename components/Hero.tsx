@@ -4,202 +4,344 @@ import { BRAND } from "@/lib/constants";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useEffect } from "react";
+import { ArrowRight, Star } from "lucide-react";
 
 export default function Hero() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-
   const springConfig = { damping: 25, stiffness: 700 };
   const spotlightX = useSpring(mouseX, springConfig);
   const spotlightY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    const handler = (e: MouseEvent) => { mouseX.set(e.clientX); mouseY.set(e.clientY); };
+    window.addEventListener("mousemove", handler);
+    return () => window.removeEventListener("mousemove", handler);
   }, [mouseX, mouseY]);
 
   const container = {
     hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
+    show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  };
+  const item = {
+    hidden: { opacity: 0, y: 24 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+  const interests = ["Photography", "Tech", "Music", "Travel", "Gaming", "Art", "Fitness", "Food"];
 
   return (
-    <section className="relative min-h-screen flex items-center pt-40 pb-24 overflow-hidden bg-white grid-pattern">
-      {/* Interactive Spotlight */}
+    <section className="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden bg-white grid-pattern">
+      {/* Mouse spotlight */}
       <motion.div
-        className="pointer-events-none absolute -inset-px z-30 transition duration-300 opacity-0 lg:opacity-100"
-        style={{
-          background: `radial-gradient(600px at ${spotlightX}px ${spotlightY}px, rgba(96, 165, 250, 0.1), transparent 80%)`,
-        }}
+        className="pointer-events-none absolute -inset-px z-30 opacity-0 lg:opacity-100 transition duration-300"
+        style={{ background: `radial-gradient(700px at ${spotlightX}px ${spotlightY}px, rgba(96,165,250,0.07), transparent 80%)` }}
       />
 
-      {/* Dynamic Background Elements */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1],
-          x: [0, 50, 0],
-          y: [0, -30, 0]
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-ticlu-blue/20 rounded-full blur-[120px] -z-10" 
+      {/* Background blobs */}
+      <motion.div
+        animate={{ scale: [1,1.15,1], x:[0,40,0], y:[0,-25,0] }}
+        transition={{ duration:14, repeat: Infinity, ease:"linear" }}
+        className="absolute top-[-15%] left-[-10%] w-[45%] h-[45%] bg-ticlu-blue/15 rounded-full blur-[130px] -z-10"
       />
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.3, 1],
-          x: [0, -50, 0],
-          y: [0, 30, 0]
-        }}
-        transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-        className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-ticlu-purple/20 rounded-full blur-[120px] -z-10" 
+      <motion.div
+        animate={{ scale:[1,1.2,1], x:[0,-40,0], y:[0,25,0] }}
+        transition={{ duration:17, repeat:Infinity, ease:"linear" }}
+        className="absolute bottom-[-15%] right-[-10%] w-[55%] h-[55%] bg-ticlu-purple/15 rounded-full blur-[130px] -z-10"
       />
 
       <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-14 max-w-4xl relative z-40">
+
+        {/* LEFT — copy */}
+        <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-10 relative z-40">
+
+          {/* Badge */}
           <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-slate-50 text-slate-500 text-[10px] font-black tracking-[0.4em] uppercase border border-slate-100">
-              <span className="w-1.5 h-1.5 rounded-full bg-ticlu-blue animate-pulse shadow-[0_0_10px_rgba(96,165,250,0.5)]" />
-              The Future of Short-Form
+            <span className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-ticlu-blue/8 text-ticlu-blue text-[11px] font-black tracking-[0.3em] uppercase border border-ticlu-blue/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-ticlu-blue animate-pulse" />
+              Now in Beta — Join free
             </span>
           </motion.div>
-          
-          <div className="flex flex-col gap-6">
-            <motion.h1 variants={item} className="text-8xl md:text-9xl font-black tracking-tighter text-slate-900 leading-[0.8] uppercase">
+
+          {/* Headline */}
+          <div className="flex flex-col gap-4">
+            <motion.h1 variants={item} className="text-7xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[0.85] uppercase">
               {BRAND.name}
             </motion.h1>
-            <motion.p variants={item} className="text-4xl md:text-7xl font-black tracking-tight text-slate-900 leading-tight">
-              Connecting <span className="text-highlight-box px-8 py-2 text-white not-italic inline-flex items-center justify-center transform -rotate-1">Creativity.</span>
+            <motion.p variants={item} className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight">
+              Discover content you{" "}
+              <span className="text-highlight-box text-white not-italic">actually</span>{" "}
+              care about.
             </motion.p>
           </div>
 
-          <motion.p variants={item} className="text-xl md:text-2xl text-slate-500 leading-relaxed font-medium max-w-2xl">
-            Join 10M+ creators in the fastest growing social ecosystem ever built. Experience passion-based feeds like never before.
+          {/* Sub */}
+          <motion.p variants={item} className="text-lg md:text-xl text-slate-500 leading-relaxed font-medium max-w-xl">
+            Interest-based video feeds. Real creators. Zero algorithm noise.
+            Follow your passions — not what's trending for everyone else.
           </motion.p>
 
-          <motion.div variants={item} className="flex flex-wrap gap-8 mt-4">
+          {/* Scrolling interest pills */}
+          <motion.div variants={item} className="overflow-hidden -mx-2">
+            <motion.div
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+              className="flex gap-2 w-max"
+            >
+              {[...interests, ...interests].map((tag, i) => (
+                <span
+                  key={i}
+                  className="flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-bold bg-slate-50 border border-slate-200 text-slate-500 select-none"
+                >
+                  #{tag}
+                </span>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div variants={item} className="flex flex-wrap gap-4">
             <Link
               href="#download"
-              className="group relative bg-ticlu-blue text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_20px_40px_-10px_rgba(96,165,250,0.4)]"
+              className="group flex items-center gap-2 bg-ticlu-blue text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_16px_40px_-8px_rgba(96,165,250,0.45)]"
             >
-              <span className="relative z-10">Download App</span>
+              Download Free
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              href="#features"
-              className="glass-card px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-sm text-slate-600 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95 border-slate-200"
+              href="#how-it-works"
+              className="flex items-center gap-2 glass-card px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm text-slate-600 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95 border-slate-200"
             >
-              Explore Tech
+              See how it works
             </Link>
           </motion.div>
 
-          <motion.div variants={item} className="flex items-center gap-6 mt-6">
-            <div className="flex -space-x-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-12 h-12 rounded-full border-4 border-white glass-card overflow-hidden ring-2 ring-ticlu-blue/5">
-                  <div className={`w-full h-full bg-linear-to-br ${i % 2 === 0 ? 'from-ticlu-blue to-ticlu-indigo' : 'from-ticlu-purple to-pink-500'}`} />
+          {/* Social proof row */}
+          <motion.div variants={item} className="flex flex-wrap items-center gap-6">
+            {/* Avatars */}
+            <div className="flex -space-x-3">
+              {["from-ticlu-blue to-ticlu-indigo","from-ticlu-purple to-pink-500","from-ticlu-indigo to-ticlu-blue","from-pink-400 to-ticlu-purple"].map((grad,i) => (
+                <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden ring-1 ring-ticlu-blue/10 shadow-sm">
+                  <div className={`w-full h-full bg-gradient-to-br ${grad}`} />
                 </div>
               ))}
-              <div className="w-12 h-12 rounded-full border-4 border-white glass-card flex items-center justify-center text-xs font-bold text-ticlu-blue ring-2 ring-ticlu-blue/5">
+              <div className="w-10 h-10 rounded-full border-2 border-white glass-card flex items-center justify-center text-[10px] font-black text-ticlu-blue ring-1 ring-ticlu-blue/10">
                 +10k
               </div>
             </div>
-            <div className="h-10 w-[1px] bg-slate-200" />
-            <p className="text-sm font-medium text-slate-500">
-              Trusted by creators <br/><span className="text-ticlu-dark font-bold underline decoration-ticlu-blue decoration-2">Worldwide</span>
-            </p>
+            <div className="h-8 w-px bg-slate-200" />
+            {/* Stars */}
+            <div className="flex flex-col gap-0.5">
+              <div className="flex gap-0.5">
+                {[1,2,3,4,5].map(s => <Star key={s} size={13} className="fill-amber-400 text-amber-400"/>)}
+              </div>
+              <p className="text-xs font-bold text-slate-500">
+                Loved by <span className="text-slate-900">10k+ creators</span>
+              </p>
+            </div>
+            <div className="h-8 w-px bg-slate-200" />
+            {/* Stat */}
+            <div className="flex flex-col gap-0.5">
+              <p className="text-xl font-black text-slate-900 tracking-tight">500k+</p>
+              <p className="text-xs font-bold text-slate-500">Videos shared</p>
+            </div>
           </motion.div>
         </motion.div>
 
+        {/* RIGHT — phone mockup group */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
-          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.8 }}
-          className="relative flex justify-center perspective-[1000px]"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
+          className="relative flex justify-center items-end gap-4"
         >
-          {/* Floating Phone Mockup */}
+          {/* Left phone — Profile */}
           <motion.div
-            animate={{ 
-              y: [0, -25, 0],
-              rotateZ: [-1, 1, -1]
-            }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-[320px] h-[640px] bg-[#0F172A] rounded-[3.5rem] p-3 shadow-[0_50px_100px_-20px_rgba(15,23,42,0.3)] border-[12px] border-[#1e293b]"
+            animate={{ y: [0,-12,0], rotate:[-1.5,1.5,-1.5] }}
+            transition={{ duration:6.5, repeat:Infinity, ease:"easeInOut", delay:0.8 }}
+            className="relative hidden md:block w-[170px] h-[340px] bg-[#0F172A] rounded-[2.4rem] p-2.5 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.35)] border-[8px] border-[#1e293b] mt-16 opacity-80"
           >
-             {/* Notch */}
-             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-[#1e293b] rounded-b-3xl z-20 flex items-center justify-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-slate-800" />
-                <div className="w-8 h-1 rounded-full bg-slate-800" />
-             </div>
-             
-             {/* Screen Content */}
-             <div className="w-full h-full rounded-[2.8rem] bg-[#0A0A0A] overflow-hidden relative group">
-                {/* Simulated Feed */}
-                <div className="absolute inset-0 bg-linear-to-b from-indigo-900/40 via-transparent to-black" />
-                
-                {/* Content Overlay */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-between">
-                    <div className="flex justify-between items-center opacity-60">
-                        <div className="w-8 h-8 rounded-full border border-white/20" />
-                        <div className="flex gap-2">
-                            <div className="w-4 h-1 bg-white/20 rounded-full" />
-                            <div className="w-4 h-1 bg-white/20 rounded-full" />
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col gap-6">
-                        <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded-full bg-linear-to-tr from-ticlu-blue to-ticlu-purple border-2 border-white/30" />
-                            <div className="flex flex-col gap-1">
-                                <div className="h-3 w-24 bg-white/40 rounded-full" />
-                                <div className="h-2 w-16 bg-white/20 rounded-full" />
-                            </div>
-                        </div>
-                        <div className="space-y-2">
-                            <div className="h-2 w-full bg-white/20 rounded-full" />
-                            <div className="h-2 w-3/4 bg-white/20 rounded-full" />
-                        </div>
-                        <div className="flex justify-around py-4 border-t border-white/10 mt-2">
-                            {[1, 2, 3].map(i => (
-                                <div key={i} className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center">
-                                    <div className="w-4 h-4 rounded bg-white/20" />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Video Playback Visual */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div 
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 1.5, duration: 1 }}
-                        className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center"
-                    >
-                        <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[15px] border-l-white border-b-[10px] border-b-transparent ml-1" />
-                    </motion.div>
-                </div>
-             </div>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#1e293b] rounded-b-2xl z-20" />
+            <div className="w-full h-full rounded-[1.8rem] bg-[#0A0A0A] overflow-hidden relative">
+              <ProfileScreen small />
+            </div>
           </motion.div>
 
-          {/* Ambient Glows around phone */}
-          <div className="absolute top-1/4 -left-20 w-64 h-64 bg-ticlu-blue/30 rounded-full blur-[80px] -z-10 animate-pulse-slow" />
-          <div className="absolute bottom-1/4 -right-20 w-64 h-64 bg-ticlu-purple/30 rounded-full blur-[80px] -z-10 animate-pulse-slow" />
+          {/* Main phone — Feed */}
+          <motion.div
+            animate={{ y:[0,-20,0] }}
+            transition={{ duration:6, repeat:Infinity, ease:"easeInOut" }}
+            className="relative w-[240px] h-[490px] bg-[#0F172A] rounded-[3.2rem] p-3 shadow-[0_60px_120px_-20px_rgba(15,23,42,0.5)] border-[10px] border-[#1e293b] z-10"
+          >
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-[#1e293b] rounded-b-3xl z-20 flex items-center justify-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
+              <div className="w-8 h-1 rounded-full bg-slate-700" />
+            </div>
+            <div className="w-full h-full rounded-[2.6rem] bg-[#0A0A0A] overflow-hidden">
+              <FeedScreen />
+            </div>
+          </motion.div>
+
+          {/* Right phone — Notifications */}
+          <motion.div
+            animate={{ y:[0,-14,0], rotate:[1,-1.5,1] }}
+            transition={{ duration:7, repeat:Infinity, ease:"easeInOut", delay:0.4 }}
+            className="relative hidden md:block w-[170px] h-[340px] bg-[#0F172A] rounded-[2.4rem] p-2.5 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.35)] border-[8px] border-[#1e293b] mt-16 opacity-80"
+          >
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#1e293b] rounded-b-2xl z-20" />
+            <div className="w-full h-full rounded-[1.8rem] bg-[#0A0A0A] overflow-hidden">
+              <NotifScreen small />
+            </div>
+          </motion.div>
+
+          {/* Ambient glows */}
+          <div className="absolute top-1/3 -left-16 w-56 h-56 bg-ticlu-blue/25 rounded-full blur-[70px] -z-10 animate-pulse-slow" />
+          <div className="absolute bottom-1/3 -right-16 w-56 h-56 bg-ticlu-purple/25 rounded-full blur-[70px] -z-10 animate-pulse-slow" />
+
+          {/* Floating badges */}
+          <motion.div
+            initial={{ opacity:0, x:-20 }}
+            animate={{ opacity:1, x:0 }}
+            transition={{ delay:1.4 }}
+            className="absolute -left-4 top-1/4 glass-card rounded-2xl px-4 py-3 shadow-lg border border-slate-100 hidden lg:flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-xl bg-green-100 flex items-center justify-center text-sm">🎬</div>
+            <div>
+              <p className="text-xs font-black text-slate-900">New post liked</p>
+              <p className="text-[10px] text-slate-400 font-medium">2 sec ago</p>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity:0, x:20 }}
+            animate={{ opacity:1, x:0 }}
+            transition={{ delay:1.6 }}
+            className="absolute -right-4 bottom-1/3 glass-card rounded-2xl px-4 py-3 shadow-lg border border-slate-100 hidden lg:flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-xl bg-blue-100 flex items-center justify-center text-sm">✨</div>
+            <div>
+              <p className="text-xs font-black text-slate-900">You're trending</p>
+              <p className="text-[10px] text-slate-400 font-medium">in #Photography</p>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+/* ─── INLINE SCREEN COMPONENTS ─── */
+
+function FeedScreen() {
+  const pills = ["All","Photography","Tech","Music","Travel"];
+  const posts = [
+    { user:"@jordanm", tag:"Photography", title:"Golden hour at the canyon", time:"2:34", grad:"from-blue-900/60 to-indigo-900/60" },
+    { user:"@techwave", tag:"Tech",        title:"Building my first PCB board", time:"1:12", grad:"from-indigo-900/60 to-purple-900/60" },
+  ];
+  return (
+    <div className="w-full h-full bg-[#080810] flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between px-4 pt-8 pb-2">
+        <span className="text-[#60A5FA] font-black text-lg tracking-tight">ticlu</span>
+        <div className="flex gap-2">
+          <div className="w-5 h-5 rounded-full bg-white/10" />
+          <div className="w-5 h-5 rounded-full bg-white/10" />
+        </div>
+      </div>
+      {/* Interest pills */}
+      <div className="flex gap-1.5 px-3 pb-3 overflow-hidden">
+        {pills.map((p,i) => (
+          <span key={p} className={`flex-shrink-0 text-[8px] font-bold px-2.5 py-1 rounded-full ${i===0 ? "bg-[#60A5FA] text-[#080810]" : "bg-white/8 text-white/60 border border-white/10"}`}>
+            {p}
+          </span>
+        ))}
+      </div>
+      {/* Posts */}
+      <div className="flex flex-col gap-2 px-2 overflow-hidden flex-1">
+        {posts.map((post,i) => (
+          <div key={i} className="rounded-xl overflow-hidden border border-white/6 bg-white/4">
+            <div className={`w-full h-20 bg-gradient-to-br ${post.grad} flex items-center justify-center relative`}>
+              <div className="w-7 h-7 rounded-full bg-[#60A5FA]/90 flex items-center justify-center">
+                <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-[#080810] border-b-[5px] border-b-transparent ml-0.5" />
+              </div>
+              <span className="absolute bottom-1.5 right-2 text-[7px] text-white/70 bg-black/50 rounded px-1">{post.time}</span>
+            </div>
+            <div className="px-2.5 py-2">
+              <div className="flex items-center gap-1.5 mb-1">
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[#60A5FA] to-[#818CF8]" />
+                <span className="text-[8px] font-bold text-white/80">{post.user}</span>
+                <span className="text-[7px] text-[#60A5FA] ml-auto">#{post.tag}</span>
+              </div>
+              <p className="text-[8px] text-white/55 leading-tight">{post.title}</p>
+              <div className="flex gap-3 mt-1.5">
+                {["♥ 2.1k","💬 48","↗ Share"].map(a => (
+                  <span key={a} className="text-[7px] text-white/40">{a}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Tab bar */}
+      <div className="flex justify-around items-center px-4 py-2.5 border-t border-white/6 mt-auto">
+        {["⌂","◎","＋","🔔","◉"].map((ic,i) => (
+          <div key={i} className={`text-sm ${i===0 ? "text-[#60A5FA]" : "text-white/30"}`}>{ic}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ProfileScreen({ small }: { small?: boolean }) {
+  return (
+    <div className="w-full h-full bg-[#080810] flex flex-col">
+      <div className="h-14 bg-gradient-to-br from-[#60A5FA]/20 to-[#818CF8]/20" />
+      <div className="px-3 -mt-5 flex justify-between items-end pb-2">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#60A5FA] to-[#818CF8] border-2 border-[#080810]" />
+        <div className="text-[8px] border border-white/20 text-white/60 rounded-full px-2 py-0.5 mb-1">Edit</div>
+      </div>
+      <div className="px-3 pb-2">
+        <p className="text-[10px] font-bold text-white">Alex Rivera</p>
+        <p className="text-[8px] text-white/40">@alexrivera</p>
+        <div className="flex gap-4 mt-2">
+          {[["128","Posts"],["4.2k","Likes"]].map(([n,l]) => (
+            <div key={l}><p className="text-[10px] font-black text-white">{n}</p><p className="text-[7px] text-white/40">{l}</p></div>
+          ))}
+        </div>
+      </div>
+      <div className="grid grid-cols-3 gap-px px-1 flex-1">
+        {[...Array(6)].map((_,i) => (
+          <div key={i} className="aspect-square bg-gradient-to-br from-white/6 to-white/3 flex items-center justify-center">
+            <span className="text-white/15 text-[10px]">▶</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function NotifScreen({ small }: { small?: boolean }) {
+  const notifs = [
+    { emoji:"♥", text:"@janedoe liked your video", time:"2m", color:"bg-red-500/80" },
+    { emoji:"💬", text:"@mike commented: 'Wow!'", time:"5m", color:"bg-[#60A5FA]/80" },
+    { emoji:"👤", text:"@sara started following you", time:"1h", color:"bg-[#818CF8]/80" },
+    { emoji:"✨", text:"Your post is trending", time:"2h", color:"bg-amber-500/80" },
+  ];
+  return (
+    <div className="w-full h-full bg-[#080810] flex flex-col">
+      <div className="px-3 pt-8 pb-3">
+        <p className="text-[11px] font-black text-white">Notifications</p>
+      </div>
+      <div className="flex flex-col flex-1 overflow-hidden">
+        {notifs.map((n,i) => (
+          <div key={i} className="flex items-center gap-2 px-3 py-2.5 border-b border-white/4">
+            <div className={`w-6 h-6 rounded-full ${n.color} flex items-center justify-center text-[9px] flex-shrink-0`}>{n.emoji}</div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[8px] text-white/70 leading-tight truncate">{n.text}</p>
+              <p className="text-[7px] text-white/30 mt-0.5">{n.time}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
