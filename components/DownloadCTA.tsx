@@ -12,7 +12,7 @@ export default function DownloadCTA() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative rounded-[3rem] overflow-hidden bg-ticlu-dark p-12 md:p-20 text-center shadow-[0_40px_80px_-20px_rgba(15,23,42,0.4)]"
+          className="relative rounded-[2.5rem] md:rounded-[3rem] overflow-hidden bg-ticlu-dark p-8 sm:p-12 md:p-20 text-center shadow-[0_40px_80px_-20px_rgba(15,23,42,0.4)]"
         >
           {/* Animated bg blobs */}
           <motion.div
@@ -37,7 +37,7 @@ export default function DownloadCTA() {
               Free Download — iOS & Android
             </motion.div>
 
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.0] tracking-tighter uppercase">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-6 leading-[1.0] tracking-tighter uppercase">
               Your feed.<br />
               <span className="text-ticlu-blue">Your rules.</span>
             </h2>

@@ -80,8 +80,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-10 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-5">
-          <p className="text-white/35 text-sm font-medium">
+        <div className="pt-10 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-white/35 text-sm font-medium text-center md:text-left">
             © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-3 flex-wrap justify-center">

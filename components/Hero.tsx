@@ -1,7 +1,7 @@
 "use client";
 
 import { BRAND } from "@/lib/constants";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, Variants } from "framer-motion";
 import Link from "next/link";
 import { useEffect } from "react";
 import { ArrowRight, Star } from "lucide-react";
@@ -22,16 +22,16 @@ export default function Hero() {
   const container = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
-  };
+  } as any;
   const item = {
     hidden: { opacity: 0, y: 24 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
+  } as any;
 
   const interests = ["Photography", "Tech", "Music", "Travel", "Gaming", "Art", "Fitness", "Food"];
 
   return (
-    <section className="relative min-h-screen flex items-center pt-36 pb-24 overflow-hidden bg-white grid-pattern">
+    <section className="relative min-h-screen flex items-center pt-28 md:pt-36 pb-24 overflow-hidden bg-white grid-pattern">
       {/* Mouse spotlight */}
       <motion.div
         className="pointer-events-none absolute -inset-px z-30 opacity-0 lg:opacity-100 transition duration-300"
@@ -65,10 +65,10 @@ export default function Hero() {
 
           {/* Headline */}
           <div className="flex flex-col gap-4">
-            <motion.h1 variants={item} className="text-7xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[0.85] uppercase">
+            <motion.h1 variants={item} className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-slate-900 leading-[0.85] uppercase">
               {BRAND.name}
             </motion.h1>
-            <motion.p variants={item} className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight">
+            <motion.p variants={item} className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight">
               Discover content you{" "}
               <span className="text-highlight-box text-white not-italic">actually</span>{" "}
               care about.
@@ -117,33 +117,33 @@ export default function Hero() {
           </motion.div>
 
           {/* Social proof row */}
-          <motion.div variants={item} className="flex flex-wrap items-center gap-6">
+          <motion.div variants={item} className="flex flex-wrap items-center gap-4 sm:gap-6">
             {/* Avatars */}
             <div className="flex -space-x-3">
               {["from-ticlu-blue to-ticlu-indigo","from-ticlu-purple to-pink-500","from-ticlu-indigo to-ticlu-blue","from-pink-400 to-ticlu-purple"].map((grad,i) => (
-                <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden ring-1 ring-ticlu-blue/10 shadow-sm">
+                <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white overflow-hidden ring-1 ring-ticlu-blue/10 shadow-sm">
                   <div className={`w-full h-full bg-gradient-to-br ${grad}`} />
                 </div>
               ))}
-              <div className="w-10 h-10 rounded-full border-2 border-white glass-card flex items-center justify-center text-[10px] font-black text-ticlu-blue ring-1 ring-ticlu-blue/10">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white glass-card flex items-center justify-center text-[8px] sm:text-[10px] font-black text-ticlu-blue ring-1 ring-ticlu-blue/10">
                 +10k
               </div>
             </div>
-            <div className="h-8 w-px bg-slate-200" />
+            <div className="hidden sm:block h-8 w-px bg-slate-200" />
             {/* Stars */}
             <div className="flex flex-col gap-0.5">
               <div className="flex gap-0.5">
-                {[1,2,3,4,5].map(s => <Star key={s} size={13} className="fill-amber-400 text-amber-400"/>)}
+                {[1,2,3,4,5].map(s => <Star key={s} size={11} className="fill-amber-400 text-amber-400 sm:size-[13px]"/>)}
               </div>
-              <p className="text-xs font-bold text-slate-500">
+              <p className="text-[10px] sm:text-xs font-bold text-slate-500">
                 Loved by <span className="text-slate-900">10k+ creators</span>
               </p>
             </div>
             <div className="h-8 w-px bg-slate-200" />
             {/* Stat */}
             <div className="flex flex-col gap-0.5">
-              <p className="text-xl font-black text-slate-900 tracking-tight">500k+</p>
-              <p className="text-xs font-bold text-slate-500">Videos shared</p>
+              <p className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">500k+</p>
+              <p className="text-[10px] sm:text-xs font-bold text-slate-500">Videos shared</p>
             </div>
           </motion.div>
         </motion.div>
@@ -159,10 +159,10 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0,-12,0], rotate:[-1.5,1.5,-1.5] }}
             transition={{ duration:6.5, repeat:Infinity, ease:"easeInOut", delay:0.8 }}
-            className="relative hidden md:block w-[170px] h-[340px] bg-[#0F172A] rounded-[2.4rem] p-2.5 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.35)] border-[8px] border-[#1e293b] mt-16 opacity-80"
+            className="relative hidden md:block w-[140px] lg:w-[170px] h-[280px] lg:h-[340px] bg-[#0F172A] rounded-[2rem] lg:rounded-[2.4rem] p-2 lg:p-2.5 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.35)] border-[6px] lg:border-[8px] border-[#1e293b] mt-16 opacity-80"
           >
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#1e293b] rounded-b-2xl z-20" />
-            <div className="w-full h-full rounded-[1.8rem] bg-[#0A0A0A] overflow-hidden relative">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 lg:w-20 h-4 lg:h-5 bg-[#1e293b] rounded-b-2xl z-20" />
+            <div className="w-full h-full rounded-[1.5rem] lg:rounded-[1.8rem] bg-[#0A0A0A] overflow-hidden relative">
               <ProfileScreen small />
             </div>
           </motion.div>
@@ -171,13 +171,13 @@ export default function Hero() {
           <motion.div
             animate={{ y:[0,-20,0] }}
             transition={{ duration:6, repeat:Infinity, ease:"easeInOut" }}
-            className="relative w-[240px] h-[490px] bg-[#0F172A] rounded-[3.2rem] p-3 shadow-[0_60px_120px_-20px_rgba(15,23,42,0.5)] border-[10px] border-[#1e293b] z-10"
+            className="relative w-[180px] sm:w-[220px] lg:w-[240px] h-[370px] sm:h-[450px] lg:h-[490px] bg-[#0F172A] rounded-[2.5rem] sm:rounded-[3rem] lg:rounded-[3.2rem] p-2.5 sm:p-3 shadow-[0_60px_120px_-20px_rgba(15,23,42,0.5)] border-[8px] lg:border-[10px] border-[#1e293b] z-10"
           >
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-[#1e293b] rounded-b-3xl z-20 flex items-center justify-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-              <div className="w-8 h-1 rounded-full bg-slate-700" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 sm:w-28 h-5 sm:h-6 bg-[#1e293b] rounded-b-2xl sm:rounded-b-3xl z-20 flex items-center justify-center gap-1.5 sm:gap-2">
+              <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-slate-700" />
+              <div className="w-6 h-0.5 sm:w-8 sm:h-1 rounded-full bg-slate-700" />
             </div>
-            <div className="w-full h-full rounded-[2.6rem] bg-[#0A0A0A] overflow-hidden">
+            <div className="w-full h-full rounded-[2rem] sm:rounded-[2.4rem] lg:rounded-[2.6rem] bg-[#0A0A0A] overflow-hidden">
               <FeedScreen />
             </div>
           </motion.div>
@@ -186,10 +186,10 @@ export default function Hero() {
           <motion.div
             animate={{ y:[0,-14,0], rotate:[1,-1.5,1] }}
             transition={{ duration:7, repeat:Infinity, ease:"easeInOut", delay:0.4 }}
-            className="relative hidden md:block w-[170px] h-[340px] bg-[#0F172A] rounded-[2.4rem] p-2.5 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.35)] border-[8px] border-[#1e293b] mt-16 opacity-80"
+            className="relative hidden md:block w-[140px] lg:w-[170px] h-[280px] lg:h-[340px] bg-[#0F172A] rounded-[2rem] lg:rounded-[2.4rem] p-2 lg:p-2.5 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.35)] border-[6px] lg:border-[8px] border-[#1e293b] mt-16 opacity-80"
           >
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#1e293b] rounded-b-2xl z-20" />
-            <div className="w-full h-full rounded-[1.8rem] bg-[#0A0A0A] overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 lg:w-20 h-4 lg:h-5 bg-[#1e293b] rounded-b-2xl z-20" />
+            <div className="w-full h-full rounded-[1.5rem] lg:rounded-[1.8rem] bg-[#0A0A0A] overflow-hidden">
               <NotifScreen small />
             </div>
           </motion.div>

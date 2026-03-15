@@ -84,7 +84,7 @@ const spans = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-32 relative overflow-hidden bg-ticlu-slate grid-pattern">
+    <section id="features" className="py-20 md:py-32 relative overflow-hidden bg-ticlu-slate grid-pattern">
       <div className="container mx-auto px-6 relative z-10">
 
         <div className="text-center max-w-4xl mx-auto mb-24">
@@ -100,7 +100,7 @@ export default function Features() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-8xl font-black mb-8 text-slate-900 tracking-tighter leading-[0.85] uppercase"
+            className="text-4xl sm:text-6xl md:text-8xl font-black mb-8 text-slate-900 tracking-tighter leading-[0.85] uppercase"
           >
             Everything you need.{" "}
             <span className="text-highlight-box text-white not-italic">Nothing you don't.</span>
@@ -142,7 +142,7 @@ export default function Features() {
                   </div>
 
                   <div className="mt-auto">
-                    <h3 className="text-2xl md:text-3xl font-black mb-3 text-slate-900 tracking-tight uppercase">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black mb-3 text-slate-900 tracking-tight uppercase">
                       {feature.title}
                     </h3>
                     <p className="text-slate-500 leading-relaxed font-medium">

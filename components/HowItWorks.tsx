@@ -59,7 +59,7 @@ export default function HowItWorks() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-7xl font-black mb-6 text-slate-900 tracking-tighter leading-[0.9] uppercase"
+            className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 text-slate-900 tracking-tighter leading-[0.9] uppercase"
           >
             Three steps to{" "}
             <span className="text-highlight-box text-white not-italic">your</span>
@@ -77,7 +77,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Steps */}
-        <div className="flex flex-col gap-32">
+        <div className="flex flex-col gap-20 md:gap-32">
           {steps.map((step, i) => (
             <motion.div
               key={step.number}
@@ -100,7 +100,7 @@ export default function HowItWorks() {
                   </span>
                 </div>
 
-                <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 uppercase leading-[0.9]">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-slate-900 uppercase leading-[0.9]">
                   {step.title}
                 </h3>
 
@@ -131,12 +131,12 @@ export default function HowItWorks() {
                   <div className={`absolute -inset-8 rounded-full blur-3xl ${step.accent}`} />
 
                   {/* Phone frame */}
-                  <div className="relative w-[260px] h-[530px] bg-[#0F172A] rounded-[3rem] p-3 shadow-[0_50px_100px_-20px_rgba(15,23,42,0.4)] border-[10px] border-[#1e293b] z-10">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-[#1e293b] rounded-b-3xl z-20 flex items-center justify-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-                      <div className="w-8 h-1 rounded-full bg-slate-700" />
+                  <div className="relative w-[220px] sm:w-[260px] h-[450px] sm:h-[530px] bg-[#0F172A] rounded-[2.5rem] sm:rounded-[3rem] p-2.5 sm:p-3 shadow-[0_50px_100px_-20px_rgba(15,23,42,0.4)] border-[8px] sm:border-[10px] border-[#1e293b] z-10">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 sm:w-28 h-5 sm:h-6 bg-[#1e293b] rounded-b-2xl sm:rounded-b-3xl z-20 flex items-center justify-center gap-1.5 sm:gap-2">
+                      <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-slate-700" />
+                      <div className="w-6 h-0.5 sm:w-8 sm:h-1 rounded-full bg-slate-700" />
                     </div>
-                    <div className="w-full h-full rounded-[2.4rem] bg-[#0A0A0A] overflow-hidden">
+                    <div className="w-full h-full rounded-[2rem] sm:rounded-[2.4rem] bg-[#0A0A0A] overflow-hidden">
                       {step.screen}
                     </div>
                   </div>

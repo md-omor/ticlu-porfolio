@@ -44,7 +44,7 @@ const marqueeItems = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-32 bg-white relative overflow-hidden">
+    <section id="testimonials" className="py-20 md:py-32 bg-white relative overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-50" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -62,7 +62,7 @@ export default function Testimonials() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-7xl font-black mb-6 text-slate-900 tracking-tighter leading-[0.9] uppercase"
+            className="text-4xl sm:text-6xl md:text-7xl font-black mb-6 text-slate-900 tracking-tighter leading-[0.9] uppercase"
           >
             Loved by{" "}
             <span className="text-highlight-box text-white not-italic">real</span>{" "}
@@ -98,7 +98,7 @@ export default function Testimonials() {
               </div>
 
               {/* Quote */}
-              <p className="text-slate-700 leading-relaxed font-medium text-[15px] italic flex-1">
+              <p className="text-slate-700 leading-relaxed font-medium text-sm sm:text-[15px] italic flex-1">
                 "{t.quote}"
               </p>
 
