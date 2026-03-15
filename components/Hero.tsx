@@ -1,10 +1,10 @@
 "use client";
 
 import { BRAND } from "@/lib/constants";
-import { motion, useMotionValue, useSpring, Variants } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
-import { ArrowRight, Star } from "lucide-react";
 
 export default function Hero() {
   const mouseX = useMotionValue(0);
@@ -71,7 +71,7 @@ export default function Hero() {
             <motion.p variants={item} className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight">
               Discover content you{" "}
               <span className="text-highlight-box text-white not-italic">actually</span>{" "}
-              care about.
+              care about
             </motion.p>
           </div>
 
