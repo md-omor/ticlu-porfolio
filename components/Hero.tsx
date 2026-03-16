@@ -2,7 +2,7 @@
 
 import { BRAND } from "@/lib/constants";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
 
@@ -57,7 +57,7 @@ export default function Hero() {
 
           {/* Badge */}
           <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-ticlu-blue/8 text-ticlu-blue text-[11px] font-black tracking-[0.3em] uppercase border border-ticlu-blue/20">
+            <span className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-ticlu-blue/8 text-ticlu-blue text-[11px] font-semibold tracking-[0.3em] uppercase border border-ticlu-blue/20">
               <span className="w-1.5 h-1.5 rounded-full bg-ticlu-blue animate-pulse" />
               Now in Beta — Join free
             </span>
@@ -70,7 +70,7 @@ export default function Hero() {
             </motion.h1>
             <motion.p variants={item} className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-tight">
               Discover content you{" "}
-              <span className="text-highlight-box text-white not-italic">actually</span>{" "}
+              <span className="text-highlight-box text-[#60A5FA] md:text-6xl not-italic">actually</span>{" "}
               care about
             </motion.p>
           </div>
@@ -102,50 +102,16 @@ export default function Hero() {
           {/* CTAs */}
           <motion.div variants={item} className="flex flex-wrap gap-4">
             <Link
-              href="#download"
+              href="#"
               className="group flex items-center gap-2 bg-ticlu-blue text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_16px_40px_-8px_rgba(96,165,250,0.45)]"
             >
-              Download Free
+              JOIN Now
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link
-              href="#how-it-works"
-              className="flex items-center gap-2 glass-card px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm text-slate-600 hover:bg-slate-50 transition-all hover:scale-105 active:scale-95 border-slate-200"
-            >
-              See how it works
-            </Link>
+            
           </motion.div>
 
-          {/* Social proof row */}
-          <motion.div variants={item} className="flex flex-wrap items-center gap-4 sm:gap-6">
-            {/* Avatars */}
-            <div className="flex -space-x-3">
-              {["from-ticlu-blue to-ticlu-indigo","from-ticlu-purple to-pink-500","from-ticlu-indigo to-ticlu-blue","from-pink-400 to-ticlu-purple"].map((grad,i) => (
-                <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white overflow-hidden ring-1 ring-ticlu-blue/10 shadow-sm">
-                  <div className={`w-full h-full bg-gradient-to-br ${grad}`} />
-                </div>
-              ))}
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white glass-card flex items-center justify-center text-[8px] sm:text-[10px] font-black text-ticlu-blue ring-1 ring-ticlu-blue/10">
-                +10k
-              </div>
-            </div>
-            <div className="hidden sm:block h-8 w-px bg-slate-200" />
-            {/* Stars */}
-            <div className="flex flex-col gap-0.5">
-              <div className="flex gap-0.5">
-                {[1,2,3,4,5].map(s => <Star key={s} size={11} className="fill-amber-400 text-amber-400 sm:size-[13px]"/>)}
-              </div>
-              <p className="text-[10px] sm:text-xs font-bold text-slate-500">
-                Loved by <span className="text-slate-900">10k+ creators</span>
-              </p>
-            </div>
-            <div className="h-8 w-px bg-slate-200" />
-            {/* Stat */}
-            <div className="flex flex-col gap-0.5">
-              <p className="text-lg sm:text-xl font-black text-slate-900 tracking-tight">500k+</p>
-              <p className="text-[10px] sm:text-xs font-bold text-slate-500">Videos shared</p>
-            </div>
-          </motion.div>
+       
         </motion.div>
 
         {/* RIGHT — phone mockup group */}

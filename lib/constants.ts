@@ -46,7 +46,6 @@ export const FEATURES = [
 
 export const NAV_LINKS = [
   { name: "Features", href: "#features" },
-  { name: "How It Works", href: "#how-it-works" },
   { name: "Spotlight", href: "#spotlight" },
   { name: "Download", href: "#download" },
 ];

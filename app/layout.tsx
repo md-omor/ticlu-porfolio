@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import { Rubik, Open_Sans } from "next/font/google";
 import "./globals.css";
+
+const rubik = Rubik({
+  variable: "--font-rubik",
+  subsets: ["latin"],
+});
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -8,20 +13,14 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Ticlu — Connecting Creativity",
-  description: "A short-form video social media app that connects creativity through passion-based feeds.",
+  title: "Ticlu — Share what you love",
+  description: "Interest-based short-form video. Your feed, built around your passions.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body
-        className={`${openSans.variable} font-sans antialiased bg-white text-slate-900 overflow-x-hidden`}
-      >
+      <body className={`${rubik.variable} ${openSans.variable} font-sans`}>
         {children}
       </body>
     </html>

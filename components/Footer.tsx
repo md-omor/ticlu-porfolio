@@ -1,17 +1,17 @@
 "use client";
 
 import { BRAND, NAV_LINKS } from "@/lib/constants";
-import Link from "next/link";
+import { Github, Instagram, Twitter, Youtube } from "lucide-react";
 import Image from "next/image";
-import { Github, Twitter, Instagram, Youtube } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className="bg-ticlu-dark text-white pt-24 pb-12 relative overflow-hidden">
       {/* Subtle glow */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-ticlu-blue/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-full px-10 h-[400px] bg-ticlu-blue/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-10 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-14 mb-20">
 
           {/* Brand col */}
@@ -84,11 +84,7 @@ export default function Footer() {
           <p className="text-white/35 text-sm font-medium text-center md:text-left">
             © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-3 flex-wrap justify-center">
-            {["React Native","GraphQL","Firebase"].map(t => (
-              <span key={t} className="text-[10px] text-white/25 bg-white/4 border border-white/6 rounded-md px-2.5 py-1 font-bold">{t}</span>
-            ))}
-          </div>
+         
           <div className="flex items-center gap-6 text-sm text-white/35 font-medium">
             <Link href="#" className="hover:text-white transition-colors">Support</Link>
             <Link href="#" className="hover:text-white transition-colors">Contact</Link>
